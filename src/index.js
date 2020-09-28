@@ -6,6 +6,7 @@ import axios from 'axios'
 import  { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import Home from './pages/Home/Home'
 import Play from './pages/Play/Play';
+import "./fonts/iconfont.css"
 Component.prototype.$http = axios
 
 ReactDOM.render(

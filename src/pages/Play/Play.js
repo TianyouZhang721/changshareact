@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './play.css'
+import qs from 'querystring'
 export default class Play extends Component {
     constructor() { //1
         super()
@@ -22,7 +23,9 @@ export default class Play extends Component {
     }
     // 调用接口 生命周期
     componentDidMount() { // 4
-        this.$http.all([this.getLyric(), this.getUrl(), this.getDetail()]).then(
+        // 获取id参数
+        let obj = qs.parse(this.props.location.search.slice(1)) // {id: 1}
+        this.$http.all([this.getLyric(obj.id), this.getUrl(obj.id), this.getDetail(obj.id)]).then(
             this.$http.spread((res1, res2, res3) => {
                 this.setState({
                     lyric: res1.data.lrc.lyric,
@@ -63,14 +66,14 @@ export default class Play extends Component {
             })
         )
     }
-    getLyric() {
-        return this.$http.get("/lyric?id=351116")
+    getLyric(id) {
+        return this.$http.get("/lyric?id=" + id)
     }
-    getUrl() {
-        return this.$http.get("/song/url?id=351116")
+    getUrl(id) {
+        return this.$http.get("/song/url?id=" + id)
     }
-    getDetail() {
-        return this.$http.get("/song/detail?ids=351116")
+    getDetail(id) {
+        return this.$http.get("/song/detail?ids=" + id)
     }
     play() {
         if (this.audio.paused) {

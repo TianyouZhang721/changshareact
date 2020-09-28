@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
+import SongList from '../../components/SongList'
 export default class Recommend extends Component {
     constructor() {
         super()
         this.state = {
-            recommendList: []
+            recommendList: [],
+            newList: []
         }
     }
     componentDidMount() {
@@ -14,15 +16,22 @@ export default class Recommend extends Component {
                 recommendList: res.data.result
             })
         })
+
+        this.$http.get('/personalized/newsong').then(res => {
+            console.log(res)
+            this.setState({
+                newList: res.data.result
+            })
+        })
     }
 
     render() {
-        let { recommendList } = this.state
+        let { recommendList, newList } = this.state
         return (
             <div className="recommend">
                 <div className="recommend-music">
                     <p>推荐音乐</p>
-                    <ul>
+                    <ul className="r-m">
                         {
                             recommendList.map((item, index) => {
                                 return (
@@ -36,6 +45,12 @@ export default class Recommend extends Component {
                             })
                         }
                     </ul>
+                </div>
+
+                {/* 最新音乐 */}
+                <div className="new-music">
+                    <p>最新音乐</p>
+                    <SongList newList={newList} />
                 </div>
             </div>
         )

@@ -19,27 +19,27 @@
     color: red;
 }
 .home main {
-    flex: 1
+    flex: 1;
+    overflow: auto;
 }
 .home main .recommend {
     width: 100%;
     height: 100%;
+    padding-top: 15px;
 }
-.home main .recommend ul {
+.home main .recommend ul.r-m {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
-.home main .recommend ul li {
+.home main .recommend ul.r-m li {
     width: 122px;
     margin-bottom: 10px;
 }
 .home main .recommend .recommend-music>p {
     display: flex;
     align-items: center;
-    margin: 15px 0;
-    /* vertical-align: middle; */
-
+    margin-bottom: 15px;
 }
 .home main .recommend .recommend-music>p::before {
     content: "";
@@ -49,15 +49,43 @@
     background-color: red;
     margin-right: 15px;
 }
-.home main .recommend ul li .img-box {
+.home main .recommend ul.r-m li .img-box {
     width: 122px;
     height: 122px;
 
 }
-.home main .recommend ul li p {
+.home main .recommend ul.r-m li p {
     display: -webkit-box;    
     -webkit-box-orient: vertical;    
     -webkit-line-clamp: 2;    
     overflow: hidden;
     font-size: 14px;
+}
+
+.n-m li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    height: 60px;
+    border-bottom: 1px solid #eee;
+}
+.n-m li i {
+    line-height: 60px;
+    font-size: 24px;
+}
+.n-m li .sing-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 70%;
+}
+.n-m li .sing-box p {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.n-m li .sing-box p.singername {
+    font-size: 12px;
+    color: #999;
 }

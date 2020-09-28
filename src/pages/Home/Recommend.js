@@ -1,33 +1,42 @@
 import React, { Component } from 'react'
-import Test from '../../components/Test'
 export default class Recommend extends Component {
-    login() {
-        if (this.uname.value == "admin" && this.upwd.value == "123") {
-            // 跳到热歌
-            console.log(this)
-            // 查询字符串
-            // this.props.history.push("/home/hot?id=1&name=zhang")
-            // 动态路由
-            // this.props.history.push("/home/hot/1")
-            // state
-            this.props.history.push({
-                pathname: "/home/hot",
-                state: {
-                    id: 1
-                }
-            })
-            // this.props.history.push("/home/hot")
+    constructor() {
+        super()
+        this.state = {
+            recommendList: []
         }
     }
+    componentDidMount() {
+        // 调用推荐音乐接口
+        this.$http.get("/personalized?limit=6").then(res => {
+            console.log(res)
+            this.setState({
+                recommendList: res.data.result
+            })
+        })
+    }
+
     render() {
+        let { recommendList } = this.state
         return (
-            <div>
-                <input type="text" ref={uname => this.uname = uname}/>
-                <br/>
-                <input type="text" ref={upwd => this.upwd = upwd}/>
-                <br/>
-                <button onClick={this.login.bind(this)}>登录</button>
-                <Test a="1"/>
+            <div className="recommend">
+                <div className="recommend-music">
+                    <p>推荐音乐</p>
+                    <ul>
+                        {
+                            recommendList.map((item, index) => {
+                                return (
+                                    <li key={item.id}>
+                                        <div className="img-box">
+                                            <img src={item.picUrl} alt=""/>
+                                        </div>
+                                        <p>{item.name}</p>
+                                    </li>
+                                )
+                            })
+                        }
+                    </ul>
+                </div>
             </div>
         )
     }

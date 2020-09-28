@@ -21,3 +21,43 @@
 .home main {
     flex: 1
 }
+.home main .recommend {
+    width: 100%;
+    height: 100%;
+}
+.home main .recommend ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.home main .recommend ul li {
+    width: 122px;
+    margin-bottom: 10px;
+}
+.home main .recommend .recommend-music>p {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+    /* vertical-align: middle; */
+
+}
+.home main .recommend .recommend-music>p::before {
+    content: "";
+    display: block;
+    width: 3px;
+    height: 16px;
+    background-color: red;
+    margin-right: 15px;
+}
+.home main .recommend ul li .img-box {
+    width: 122px;
+    height: 122px;
+
+}
+.home main .recommend ul li p {
+    display: -webkit-box;    
+    -webkit-box-orient: vertical;    
+    -webkit-line-clamp: 2;    
+    overflow: hidden;
+    font-size: 14px;
+}

@@ -50,7 +50,7 @@ export default class Recommend extends Component {
                 {/* 最新音乐 */}
                 <div className="new-music">
                     <p>最新音乐</p>
-                    <SongList newList={newList} />
+                    <SongList newList={newList} flag={false} />
                 </div>
             </div>
         )

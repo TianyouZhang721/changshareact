@@ -5,7 +5,12 @@ class SongList extends Component {
         this.props.history.push("/play?id=" + id)
     }
     render () {
-        let { newList, flag } = this.props
+        let { newList, flag, pullUp, end } = this.props
+        let a = true
+        if (end >= newList.length) {
+            a = false
+        }
+        newList = newList.length > 50 ? newList.slice(0, end) : newList
         return (
             <ul className="n-m">
                 {
@@ -33,6 +38,9 @@ class SongList extends Component {
                             </li>
                         )
                     })
+                }
+                {
+                    a ? <p className="pullup">{pullUp ? "上拉加载" : "释放加载"}</p> : <p className="pullup">没数据了</p>
                 }
             </ul>
         )

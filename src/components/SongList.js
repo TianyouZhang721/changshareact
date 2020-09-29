@@ -23,12 +23,22 @@ class SongList extends Component {
                                     <p className="singername">
                                         {/* <span>{item.song.artists[0].name}</span> */}
                                         { 
-                                            item.song ? <span>{item.song.artists[0].name}</span> : 
-                                            <span>{
-                                                item.ar.map(item => {
-                                                    return item.name
-                                                }).join(" / ")
-                                            }</span>
+                                            (function() {
+                                                if (item.song) {
+                                                    return <span>{item.song.artists[0].name}</span>
+                                                } else if(item.ar) {
+                                                    return <span>{
+                                                        item.ar.map(item => {
+                                                            return item.name
+                                                        }).join(" / ")
+                                                    }</span>
+                                                } else {
+                                                    return <span>{item.artists[0].name}</span>
+                                                }
+                                            })()
+
+
+                                           
                                         }
                                         -
                                         <span>{item.name}</span>
